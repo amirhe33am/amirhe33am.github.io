@@ -1,0 +1,22 @@
+import { Composition, staticFile } from "remotion";
+import { getAudioDurationInSeconds } from "@remotion/media-utils";
+import { ReelAnimation } from "./ReelAnimation";
+
+const FPS = 30;
+
+export const RemotionRoot: React.FC = () => (
+  <Composition
+    id="ReelAnimation"
+    component={ReelAnimation}
+    width={1080}
+    height={1920}
+    fps={FPS}
+    durationInFrames={FPS * 15}
+    defaultProps={{ audioFile: "audio.mp3" }}
+    // Video length follows the length of the sound automatically
+    calculateMetadata={async ({ props }) => {
+      const seconds = await getAudioDurationInSeconds(staticFile(props.audioFile));
+      return { durationInFrames: Math.max(1, Math.ceil(seconds * FPS)) };
+    }}
+  />
+);
