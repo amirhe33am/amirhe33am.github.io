@@ -4,13 +4,19 @@
   "version": "1.0.0",
   "scripts": {
     "studio": "remotion studio",
-    "render": "remotion render ReelAnimation out/reel.mp4"
+    "render": "remotion render PeopleToAvoid out/people-to-avoid.mp4",
+    "render:beat": "remotion render ReelAnimation out/reel.mp4"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.544",
     "@remotion/media-utils": "^4.0.544",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "remotion": "^4.0.544"
+    "remotion": "^4.0.544",
+    "vazirmatn": "^33.0.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "typescript": "^5.9.3"
   }
 }

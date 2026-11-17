@@ -1,12 +1,23 @@
-# Reel Animation (Remotion)
+# Reel animations (Remotion)
 
-2D animation built entirely in code, synced to a sound file.
+2D animated Instagram reels (1080×1920, 30fps), built entirely in code.
 
-1. Put the audio at `public/audio.mp3` (the video length follows the audio length).
-2. `npm install`
-3. Preview: `npm run studio`
-4. Render: `npm run render` → `out/reel.mp4` (1080×1920, 30fps)
+## `PeopleToAvoid` – narrated explainer (main)
+"از این ۵ نوع آدم فاصله بگیر" — a Persian narrated explainer: each point gets its own
+animated scene (characters, props, "keep distance" motion), karaoke subtitles and a progress bar.
 
-The included `public/audio.mp3` is a 30 s sample track synthesised by
-`scripts/make-sample-music.py` (`python3 scripts/make-sample-music.py out.wav`).
-Replace it with any other sound to re-sync the animation.
+Pipeline:
+1. Edit the text in `scripts/script.json`.
+2. Voiceover (offline Persian TTS via sherpa-onnx + Piper voice `vits-piper-fa_IR-amir-medium`
+   from the k2-fsa/sherpa-onnx GitHub `tts-models` release):
+   `python3 scripts/make-voiceover.py <voice-model-dir> <out-dir>` → `voice.wav` + `src/timeline.json`,
+   then `ffmpeg -i <out-dir>/voice.wav -af loudnorm=I=-16 public/voice.mp3`.
+   To use your own recorded voice instead, replace `public/voice.mp3` and adjust the
+   `start`/`end` times in `src/timeline.json`.
+3. Background music: `python3 scripts/make-music-bed.py bed.wav 34` → `public/music.mp3`.
+4. `npm install`, preview with `npm run studio`, render with `npm run render`.
+
+## `ReelAnimation` – beat visualiser
+Music-reactive animation for `public/audio.mp3` (`npm run render:beat`).
+
+Font: Vazirmatn (SIL OFL, see `public/fonts/Vazirmatn-OFL.txt`).
