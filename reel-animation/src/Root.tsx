@@ -2,11 +2,20 @@ import { Composition, staticFile } from "remotion";
 import { getAudioDurationInSeconds } from "@remotion/media-utils";
 import { ReelAnimation } from "./ReelAnimation";
 import { PeopleToAvoid, PEOPLE_TO_AVOID_DURATION } from "./explainer/PeopleToAvoid";
+import { PeopleToAvoidDark } from "./explainer/PeopleToAvoidDark";
 
 const FPS = 30;
 
 export const RemotionRoot: React.FC = () => (
   <>
+  <Composition
+    id="PeopleToAvoidDark"
+    component={PeopleToAvoidDark}
+    width={1080}
+    height={1920}
+    fps={FPS}
+    durationInFrames={Math.ceil(PEOPLE_TO_AVOID_DURATION * FPS)}
+  />
   <Composition
     id="PeopleToAvoid"
     component={PeopleToAvoid}

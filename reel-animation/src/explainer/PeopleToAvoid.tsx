@@ -28,11 +28,11 @@ const TYPES: Record<string, string> = {
   p5: "#e5383b", // انرژی‌خوار
 };
 
-type Seg = (typeof timeline.segments)[number] & { num?: string; title?: string; caption?: string };
-const SEGS = timeline.segments as Seg[];
+export type Seg = (typeof timeline.segments)[number] & { num?: string; title?: string; caption?: string };
+export const SEGS = timeline.segments as Seg[];
 
 // ---------------------------------------------------------------- font loading
-const useFonts = () => {
+export const useFonts = () => {
   const [handle] = useState(() => delayRender("fonts"));
   useEffect(() => {
     const faces = [

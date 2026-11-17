@@ -17,6 +17,13 @@ Pipeline:
 3. Background music: `python3 scripts/make-music-bed.py bed.wav 34` → `public/music.mp3`.
 4. `npm install`, preview with `npm run studio`, render with `npm run render`.
 
+## `PeopleToAvoidDark` – dark cinematic version
+Same voiceover/timeline, dark look: neon line icons drawn on screen, light rays, dust, film grain,
+vignette, flash transitions and a cinematic music bed with impacts on every scene
+(`python3 scripts/make-cinematic-bed.py bed.wav` → `public/music-dark.mp3`).
+Render with `npm run render:dark`. Film grain makes the raw render large; re-encode for Instagram:
+`ffmpeg -i out/people-to-avoid-dark.mp4 -c:v libx264 -b:v 5M -maxrate 7M -bufsize 10M -c:a aac -movflags +faststart out/ig.mp4`
+
 ## `ReelAnimation` – beat visualiser
 Music-reactive animation for `public/audio.mp3` (`npm run render:beat`).
 
