@@ -5,6 +5,7 @@
   "scripts": {
     "studio": "remotion studio",
     "render": "remotion render PeopleToAvoid out/people-to-avoid.mp4",
+    "render:kinetic": "remotion render FivePeopleKinetic out/five-people-kinetic.mp4",
     "render:dark": "remotion render PeopleToAvoidDark out/people-to-avoid-dark.mp4",
     "render:beat": "remotion render ReelAnimation out/reel.mp4"
   },

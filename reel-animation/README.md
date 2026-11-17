@@ -17,6 +17,16 @@ Pipeline:
 3. Background music: `python3 scripts/make-music-bed.py bed.wav 34` → `public/music.mp3`.
 4. `npm install`, preview with `npm run studio`, render with `npm run render`.
 
+## `FivePeopleKinetic` – minimal kinetic-typography style (latest)
+Dark charcoal stage, faceless yellow stick figure (`src/kinetic/Figure.tsx`, a small joint rig with
+poses + walk cycle), grey figures for other people, 2–3 words on screen at a time synced to the voice
+with the key word big and yellow, progress dots, gold number badges and a summary + "save" ending.
+- Text: `scripts/script-kinetic.json` (each phrase has `text` and an optional highlighted `key`).
+- Voice, one TTS call per phrase for exact timing:
+  `python3 scripts/make-voiceover-kinetic.py <voice-model-dir> voice.wav` → `src/timeline-kinetic.json`,
+  then `ffmpeg -i voice.wav -af loudnorm=I=-16 public/voice-kinetic.mp3`.
+- Render: `npm run render:kinetic`.
+
 ## `PeopleToAvoidDark` – dark cinematic version
 Same voiceover/timeline, dark look: neon line icons drawn on screen, light rays, dust, film grain,
 vignette, flash transitions and a cinematic music bed with impacts on every scene

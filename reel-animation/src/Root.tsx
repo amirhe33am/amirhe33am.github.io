@@ -3,11 +3,20 @@ import { getAudioDurationInSeconds } from "@remotion/media-utils";
 import { ReelAnimation } from "./ReelAnimation";
 import { PeopleToAvoid, PEOPLE_TO_AVOID_DURATION } from "./explainer/PeopleToAvoid";
 import { PeopleToAvoidDark } from "./explainer/PeopleToAvoidDark";
+import { FivePeopleKinetic, KINETIC_DURATION } from "./kinetic/FivePeopleKinetic";
 
 const FPS = 30;
 
 export const RemotionRoot: React.FC = () => (
   <>
+  <Composition
+    id="FivePeopleKinetic"
+    component={FivePeopleKinetic}
+    width={1080}
+    height={1920}
+    fps={FPS}
+    durationInFrames={Math.ceil(KINETIC_DURATION * FPS)}
+  />
   <Composition
     id="PeopleToAvoidDark"
     component={PeopleToAvoidDark}
