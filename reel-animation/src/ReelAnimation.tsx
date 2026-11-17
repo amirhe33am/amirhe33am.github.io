@@ -31,12 +31,14 @@ const useAudioAnalysis = (src: string) => {
     // normalise each band to 0..1 over the whole song
     const max = (k: "bass" | "mid" | "high") => Math.max(1e-6, ...frames.map((e) => e[k]));
     const mb = max("bass"), mm = max("mid"), mh = max("high");
-    const specMax = Math.max(1e-6, ...frames.flatMap((e) => e.spectrum));
+    // every frequency bin gets its own scale so high bins are visible too
+    const binMax = new Array(SAMPLES).fill(1e-6);
+    frames.forEach((e) => e.spectrum.forEach((v, i) => (binMax[i] = Math.max(binMax[i], v))));
     const norm = frames.map((e) => ({
       bass: e.bass / mb,
       mid: e.mid / mm,
       high: e.high / mh,
-      spectrum: e.spectrum.map((v) => Math.min(1, v / specMax)),
+      spectrum: e.spectrum.map((v, i) => Math.pow(Math.min(1, v / binMax[i]), 1.4)),
     }));
     // beat = bass jumps clearly above its recent average and is a local peak
     const beats: number[] = [];
