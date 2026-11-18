@@ -62,6 +62,8 @@ export const PALETTES: Record<string, Palette> = {
   yellow: { head: ["#ffe27a", "#d9a514"], torso: "#e9b824", front: "#ececec", back: "#9c9c9c" },
   gray: { head: ["#a9a9a9", "#6f6f6f"], torso: "#6b6b6b", front: "#a8a8a8", back: "#565656" },
   white: { head: ["#ffffff", "#cfcfcf"], torso: "#777", front: "#dedede", back: "#666" },
+  hero: { head: ["#ffffff", "#d9d9d9"], torso: "#ececec", front: "#ffffff", back: "#8f8f8f" },
+  mid: { head: ["#8a8a8a", "#5e5e5e"], torso: "#5f5f5f", front: "#8c8c8c", back: "#474747" },
   dark: { head: ["#6e6e6e", "#3e3e3e"], torso: "#454545", front: "#6a6a6a", back: "#333" },
 };
 
@@ -89,9 +91,12 @@ let uid = 0;
 
 export const Figure: React.FC<{
   x: number; y: number; pose: Pose; palette?: Palette; scale?: number; facing?: 1 | -1; opacity?: number;
+  fill?: number; // 0..1 yellow fill of the torso from the hip up
+  core?: number; // radius of a yellow dot in the chest
+  fillColor?: string;
   hand?: React.ReactNode; // drawn at the front hand
   aboveHead?: React.ReactNode; // drawn above the head (unrotated)
-}> = ({ x, y, pose, palette = PALETTES.yellow, scale = 1, facing = 1, opacity = 1, hand, aboveHead }) => {
+}> = ({ x, y, pose, palette = PALETTES.yellow, scale = 1, facing = 1, opacity = 1, hand, aboveHead, fill = 0, core = 0, fillColor = "#f2c230" }) => {
   const [gid] = React.useState(() => `hg${uid++}`);
   // hip height so that the lower foot touches the ground
   const legV = (h: number, k: number) => U * Math.cos(rad(h)) + L * Math.cos(rad(h - k));
@@ -126,6 +131,8 @@ export const Figure: React.FC<{
       <path d={legB.d} stroke={palette.back} strokeWidth={21} {...stroke} />
       <path d={`M${legB.e[0]},${legB.e[1]} l14,0`} stroke={palette.back} strokeWidth={14} {...stroke} />
       <line x1={hip[0]} y1={hip[1]} x2={neck[0]} y2={neck[1]} stroke={palette.torso} strokeWidth={50} strokeLinecap="round" />
+      {fill > 0.001 ? <line x1={hip[0]} y1={hip[1]} x2={hip[0] + (neck[0] - hip[0]) * fill} y2={hip[1] + (neck[1] - hip[1]) * fill} stroke={fillColor} strokeWidth={50} strokeLinecap="round" /> : null}
+      {core > 0.1 ? <circle cx={hip[0] + (neck[0] - hip[0]) * 0.7} cy={hip[1] + (neck[1] - hip[1]) * 0.7} r={core} fill={fillColor} /> : null}
       <path d={legF.d} stroke={palette.front} strokeWidth={21} {...stroke} />
       <path d={`M${legF.e[0]},${legF.e[1]} l14,0`} stroke={palette.front} strokeWidth={14} {...stroke} />
       <circle cx={headC[0]} cy={headC[1]} r={HEAD} fill={`url(#${gid})`} />

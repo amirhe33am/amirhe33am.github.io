@@ -5,11 +5,20 @@ import { PeopleToAvoid, PEOPLE_TO_AVOID_DURATION } from "./explainer/PeopleToAvo
 import { PeopleToAvoidDark } from "./explainer/PeopleToAvoidDark";
 import { FivePeopleKinetic, KINETIC_DURATION } from "./kinetic/FivePeopleKinetic";
 import { GoalsKinetic, GOALS_DURATION } from "./kinetic/GoalsKinetic";
+import { GoalsPro, GOALS_PRO_DURATION } from "./kinetic/GoalsPro";
 
 const FPS = 30;
 
 export const RemotionRoot: React.FC = () => (
   <>
+  <Composition
+    id="GoalsPro"
+    component={GoalsPro}
+    width={1080}
+    height={1920}
+    fps={60}
+    durationInFrames={Math.ceil(GOALS_PRO_DURATION * 60)}
+  />
   <Composition
     id="GoalsKinetic"
     component={GoalsKinetic}
