@@ -28,6 +28,13 @@ export const POSES: Record<string, Pose> = {
   cheer: { ...STAND, lean: -4, head: -12, sB: 160, eB: 10, sF: 165, eF: 10 },
   highFive: { ...STAND, lean: 4, head: -4, sF: 130, eF: 10, sB: -5, eB: 10 },
   hug: { ...STAND, lean: 6, sF: 85, eF: 40, sB: 70, eB: 40 },
+  talk: { ...STAND, lean: 4, head: -4, sF: 55, eF: -40, sB: 0, eB: 12 },
+  proud: { ...STAND, lean: -7, head: -14, sF: 22, eF: 6, sB: 22, eB: 6 },
+  handOnHead: { ...STAND, lean: 8, head: 16, sF: 165, eF: 125, sB: 4, eB: 10 },
+  holdChest: { ...STAND, lean: 4, head: 14, sF: 28, eF: 115, sB: 24, eB: 112 },
+  lookUp: { ...STAND, lean: -4, head: -26, sF: 4, eF: 8, sB: -4, eB: 8 },
+  reach: { ...STAND, lean: 12, head: -6, sF: 105, eF: 5, sB: -10, eB: 10 },
+  hunch: { ...STAND, lean: 22, head: 26, sF: 20, eF: 70, sB: 14, eB: 70, hB: -2, kB: 16, hF: 10, kF: 20 },
 };
 
 export const mixPose = (a: Pose, b: Pose, t: number): Pose => {
@@ -55,6 +62,7 @@ export const PALETTES: Record<string, Palette> = {
   yellow: { head: ["#ffe27a", "#d9a514"], torso: "#e9b824", front: "#ececec", back: "#9c9c9c" },
   gray: { head: ["#a9a9a9", "#6f6f6f"], torso: "#6b6b6b", front: "#a8a8a8", back: "#565656" },
   white: { head: ["#ffffff", "#cfcfcf"], torso: "#777", front: "#dedede", back: "#666" },
+  dark: { head: ["#6e6e6e", "#3e3e3e"], torso: "#454545", front: "#6a6a6a", back: "#333" },
 };
 
 const mixHex = (a: string, b: string, t: number) => {

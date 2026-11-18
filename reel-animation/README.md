@@ -17,6 +17,14 @@ Pipeline:
 3. Background music: `python3 scripts/make-music-bed.py bed.wav 34` → `public/music.mp3`.
 4. `npm install`, preview with `npm run studio`, render with `npm run render`.
 
+## `GoalsKinetic` – "keep your goals to yourself" (uses a real voiceover)
+Same minimal style, closer to the reference: shot-based camera (wide → close-up, follows the walk/climb),
+blur/fade scene changes, yellow dots flying into the progress bar, line-art props that draw themselves,
+idle breathing on every figure, darker/blurred background people, and text that moves per shot.
+- Voice: `public/goals-voice.mp3` (user-supplied). Transcript (checked by hand) with phrase times:
+  `scripts/script-goals.json`. Word times: `python3 scripts/align-words.py voice16k.wav scripts/script-goals.json src/timeline-goals.json`.
+- Render: `npm run render:goals`.
+
 ## `FivePeopleKinetic` – minimal kinetic-typography style (latest)
 Dark charcoal stage, faceless yellow stick figure (`src/kinetic/Figure.tsx`, a small joint rig with
 poses + walk cycle), grey figures for other people, 2–3 words on screen at a time synced to the voice
