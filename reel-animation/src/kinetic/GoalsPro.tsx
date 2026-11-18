@@ -545,7 +545,7 @@ const Texts: React.FC<{ t: number }> = ({ t }) => (
   <>
     {P.map((ph, i) => {
       const next = P[i + 1];
-      const until = next ? Math.min(next.words[0].t - 0.12, ph.end + 0.45) : ph.end + 0.6;
+      const until = next ? Math.min(next.words[0].t - 0.36 - 0.025 * ph.words.length, ph.end + 0.45) : ph.end + 0.6;
       return <Line key={i} words={ph.words} until={until} layout={LAYOUT[i]} t={t} />;
     })}
     <Line t={t} until={40.9} layout={{ y: 940 }}
