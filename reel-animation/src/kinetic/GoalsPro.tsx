@@ -14,7 +14,7 @@ import { Figure, POSES, PALETTES, Palette, Pose, mixPose, walkPose } from "./Fig
 
 const FONT = "Vazirmatn";
 // accent colour (brand colour of the page)
-const Y = "#f2c230";
+const Y = "#1a7fd4"; // WOW Success logo blue (estimated from screenshot)
 const BG = "#101010";
 const LINE = "#3a3a3a";
 const CX = 540, CY = 960;
