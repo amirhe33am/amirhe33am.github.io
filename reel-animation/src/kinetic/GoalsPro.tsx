@@ -13,6 +13,7 @@ import { Figure, POSES, PALETTES, Palette, Pose, mixPose, walkPose } from "./Fig
  */
 
 const FONT = "Vazirmatn";
+// accent colour (brand colour of the page)
 const Y = "#f2c230";
 const BG = "#101010";
 const LINE = "#3a3a3a";
@@ -462,7 +463,7 @@ const World: React.FC<{ t: number }> = ({ t }) => {
       {/* ghost of you at the top */}
       {ghost > 0.01 ? (
         <Figure x={600} y={-300} scale={0.9 * ghost} pose={idle(POSES.cheer, t)} opacity={0.5}
-          palette={{ head: [Y, Y], torso: Y, front: Y, back: "#9c7d1e" } as Palette} />
+          palette={{ head: [Y, Y], torso: Y, front: Y, back: Y } as Palette} />
       ) : null}
       {/* the steep staircase */}
       {s2 > 0 ? <Draw d={toD(STAIRS2, false)} p={s2} w={4} color={LINE} /> : null}
@@ -502,7 +503,7 @@ const World: React.FC<{ t: number }> = ({ t }) => {
         return <circle key={wi} cx={x} cy={y} r={7} fill={Y} />;
       })}
       {/* you */}
-      <Figure x={heroX(t)} y={heroY(t)} pose={heroPose(t)} palette={PALETTES.hero} facing={heroFacing(t)} fill={fill} core={core} />
+      <Figure x={heroX(t)} y={heroY(t)} pose={heroPose(t)} palette={PALETTES.hero} facing={heroFacing(t)} fill={fill} core={core} fillColor={Y} />
       {/* the goal */}
       {goal ? <path d={toD(goal.pts)} fill={Y} /> : null}
     </g>

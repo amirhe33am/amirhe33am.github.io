@@ -92,7 +92,8 @@ thump(crush + np.sqrt(2 * 514 / 3000), 0.55)       # dream hits the ground
 thump(key(9), 0.35, 90)                            # flag 2
 thump(34.2, 0.35, 90)                              # goal into the chest
 
-mix = v * 1.0 + music + sfx
+SFX_DB = -7.5  # sound effects were too sharp: 7–8 dB quieter
+mix = v * 1.0 + music + sfx * 10 ** (SFX_DB / 20)
 mix = np.tanh(mix * 1.1) / np.tanh(1.1)
 mix *= 0.93 / np.abs(mix).max()
 sf.write(sys.argv[2], np.stack([mix, mix], axis=1).astype(np.float32), SR, subtype="PCM_16")
